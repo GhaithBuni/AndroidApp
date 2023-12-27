@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainPage">
+
+    <fragment
+        android:id="@+id/mainPage"
+        android:name="com.example.project.MainPage"
+        android:label="fragment_main_page"
+        tools:layout="@layout/fragment_main_page" >
+        <action
+            android:id="@+id/action_mainPage_to_choseYourGoalFragment"
+            app:destination="@id/choseYourGoalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/choseYourGoalFragment"
+        android:name="com.example.project.ChoseYourGoalFragment"
+        android:label="fragment_chose_your_goal"
+        tools:layout="@layout/fragment_chose_your_goal" />
+</navigation>
