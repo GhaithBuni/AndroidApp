@@ -18,5 +18,14 @@
         android:id="@+id/choseYourGoalFragment"
         android:name="com.example.project.ChoseYourGoalFragment"
         android:label="fragment_chose_your_goal"
-        tools:layout="@layout/fragment_chose_your_goal" />
+        tools:layout="@layout/fragment_chose_your_goal" >
+        <action
+            android:id="@+id/action_choseYourGoalFragment_to_activityLevel"
+            app:destination="@id/activityLevel" />
+    </fragment>
+    <fragment
+        android:id="@+id/activityLevel"
+        android:name="com.example.project.ActivityLevel"
+        android:label="fragment_activity_level"
+        tools:layout="@layout/fragment_activity_level" />
 </navigation>

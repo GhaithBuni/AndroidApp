@@ -16,4 +16,9 @@
     <string name="Next">Next</string>
     <string name="ActivityLevel">Choose Your Activity Level</string>
     <string name="light">Light: exercise 1-3 times/week</string>
+    <string name="moderate">Moderate_ exercise 4-5 times/week</string>
+    <string name="active">Active: daily exercise or intense exercise 3-4 times/week</string>
+    <string name="VeryActive">Very Active: intense exercise 6-7 times/week</string>
+
+
 </resources>

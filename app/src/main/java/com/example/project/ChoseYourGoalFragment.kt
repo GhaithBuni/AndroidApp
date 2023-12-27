@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +37,11 @@ class ChoseYourGoalFragment : Fragment() {
         val button = view.findViewById<Button>(R.id.lose_weight_btn)
         val button1 = view.findViewById<Button>(R.id.gain_weight_btn)
         val button2 = view.findViewById<Button>(R.id.maintain)
+        val nextButton = view.findViewById<Button>(R.id.Next_button)
+
+        nextButton.setOnClickListener {
+            view.findNavController().navigate(R.id.action_choseYourGoalFragment_to_activityLevel)
+        }
 
         setButtonClickListener(button)
        setButtonClickListener(button1)
