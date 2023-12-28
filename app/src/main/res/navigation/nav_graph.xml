@@ -27,5 +27,14 @@
         android:id="@+id/activityLevel"
         android:name="com.example.project.ActivityLevel"
         android:label="fragment_activity_level"
-        tools:layout="@layout/fragment_activity_level" />
+        tools:layout="@layout/fragment_activity_level" >
+        <action
+            android:id="@+id/action_activityLevel_to_infoFragment"
+            app:destination="@id/infoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.example.project.infoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" />
 </navigation>

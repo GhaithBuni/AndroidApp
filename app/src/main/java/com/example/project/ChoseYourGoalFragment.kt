@@ -43,23 +43,27 @@ class ChoseYourGoalFragment : Fragment() {
             view.findNavController().navigate(R.id.action_choseYourGoalFragment_to_activityLevel)
         }
 
-        setButtonClickListener(button)
-       setButtonClickListener(button1)
-        setButtonClickListener(button2)
+        setButtonClickListener(button, "#000000", "#800020")  // Adjust colors as needed
+        setButtonClickListener(button1, "#000000", "#800020")
+        setButtonClickListener(button2, "#000000", "#800020")
+
 
         return view
-        return inflater.inflate(R.layout.fragment_chose_your_goal, container, false)
+
     }
 
-    private fun setButtonClickListener(button: Button) {
+    private fun setButtonClickListener(button: Button, normalColor: String, selectedColor: String) {
+        // Set the initial background color
+        button.setBackgroundColor(Color.parseColor(normalColor))
+
         button.setOnClickListener {
             // Toggle button color on each click
             if (buttonClicked) {
                 // Change button color to normal
-                button.setBackgroundColor(Color.parseColor("#000000")) // Set your normal color
+                button.setBackgroundColor(Color.parseColor(normalColor)) // Set your normal color
             } else {
                 // Change button color to selected color
-                button.setBackgroundColor(Color.parseColor("#F9A575")) // Set your selected color
+                button.setBackgroundColor(Color.parseColor(selectedColor)) // Set your selected color
             }
 
             // Toggle the flag
@@ -67,7 +71,8 @@ class ChoseYourGoalFragment : Fragment() {
         }
     }
 
-
-
-
 }
+
+
+
+

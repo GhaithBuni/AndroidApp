@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -17,10 +16,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ActivityLevel.newInstance] factory method to
+ * Use the [infoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ActivityLevel : Fragment() {
+class infoFragment : Fragment() {
 
     private var buttonClicked = false
 
@@ -30,23 +29,14 @@ class ActivityLevel : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val view = inflater.inflate(R.layout.fragment_activity_level, container, false)
+        val view = inflater.inflate(R.layout.fragment_info,container,false)
 
-        val lightBtn = view.findViewById<Button>(R.id.Light_btn)
-        val modrateBtn = view.findViewById<Button>(R.id.moderate_btn)
-        val activeBtn = view.findViewById<Button>(R.id.active_btn)
-        val veryActiveBtn = view.findViewById<Button>(R.id.veryActive_btn)
-        val nextButton = view.findViewById<Button>(R.id.activity_next)
+        val maleBtn = view.findViewById<Button>(R.id.male_btn)
+        val femaleBtn = view.findViewById<Button>(R.id.female_btn)
+        val nextButton = view.findViewById<Button>(R.id.info_next)
 
-        nextButton.setOnClickListener {
-            view.findNavController().navigate(R.id.action_activityLevel_to_infoFragment)
-        }
-
-        setButtonClickListener(lightBtn)
-        setButtonClickListener(modrateBtn)
-        setButtonClickListener(activeBtn)
-        setButtonClickListener(veryActiveBtn)
-
+        setButtonClickListener(maleBtn)
+        setButtonClickListener(femaleBtn)
 
 
         return view
@@ -67,6 +57,4 @@ class ActivityLevel : Fragment() {
             buttonClicked = !buttonClicked
         }
     }
-
-
 }

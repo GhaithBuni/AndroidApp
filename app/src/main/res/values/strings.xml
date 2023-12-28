@@ -19,6 +19,12 @@
     <string name="moderate">Moderate_ exercise 4-5 times/week</string>
     <string name="active">Active: daily exercise or intense exercise 3-4 times/week</string>
     <string name="VeryActive">Very Active: intense exercise 6-7 times/week</string>
+    <string name="Gender">Choose your Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="age">Write Your Age</string>
+
+
 
 
 </resources>
