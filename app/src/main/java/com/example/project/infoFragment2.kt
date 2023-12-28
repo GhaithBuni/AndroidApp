@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.navigation.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,10 +29,23 @@ class infoFragment2 : Fragment() {
         // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_info2, container,false)
+        val heightTxt = view.findViewById<EditText>(R.id.height_txt)
+        val weightTxt = view.findViewById<EditText>(R.id.weight_txt)
         val nextButton = view.findViewById<Button>(R.id.info2_next)
 
         nextButton.setOnClickListener {
-            view.findNavController().navigate(R.id.action_infoFragment2_to_createAccountFrgment)
+           val  height = heightTxt.text.toString().trim()
+            val weight = weightTxt.text.toString().trim()
+            if(height.isNotEmpty()) {
+                if(weight.isNotEmpty()) {
+                    view.findNavController()
+                        .navigate(R.id.action_infoFragment2_to_createAccountFrgment)
+                }else{
+                    Toast.makeText(requireContext(), "Please enter your Weight", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(requireContext(), "Please enter your Height", Toast.LENGTH_SHORT).show()
+            }
         }
 
 

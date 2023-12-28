@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
@@ -22,44 +24,56 @@ private const val ARG_PARAM2 = "param2"
  */
 class infoFragment : Fragment() {
 
+    private lateinit var maleBtn: Button
+    private lateinit var femaleBtn: Button
+    private lateinit var nextButton: Button
+    private lateinit var ageText: EditText
+
     private var buttonClicked = false
+    private var anyButtonClicked = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_info, container, false)
 
-        val view = inflater.inflate(R.layout.fragment_info,container,false)
-
-        val maleBtn = view.findViewById<Button>(R.id.male_btn)
-        val femaleBtn = view.findViewById<Button>(R.id.female_btn)
-        val nextButton = view.findViewById<Button>(R.id.info_next)
+        maleBtn = view.findViewById(R.id.male_btn)
+        femaleBtn = view.findViewById(R.id.female_btn)
+        nextButton = view.findViewById(R.id.info_next)
+        ageText = view.findViewById(R.id.age_txt)
 
         setButtonClickListener(maleBtn)
         setButtonClickListener(femaleBtn)
 
         nextButton.setOnClickListener {
-            view.findNavController().navigate(R.id.action_infoFragment_to_infoFragment2)
+            if (anyButtonClicked) {
+                val age = ageText.text.toString().trim()
+                if (age.isNotEmpty()) {
+                    view.findNavController().navigate(R.id.action_infoFragment_to_infoFragment2)
+                } else {
+                    Toast.makeText(requireContext(), "Please enter your age", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(requireContext(), "Please make a choice", Toast.LENGTH_SHORT).show()
+            }
         }
-
 
         return view
     }
 
     private fun setButtonClickListener(button: Button) {
         button.setOnClickListener {
-            // Toggle button color on each click
-            if (buttonClicked) {
-                // Change button color to normal
-                button.setBackgroundColor(Color.parseColor("#000000")) // Set your normal color
-            } else {
-                // Change button color to selected color
-                button.setBackgroundColor(Color.parseColor("#800020")) // Set your selected color
-            }
-
-            // Toggle the flag
-            buttonClicked = !buttonClicked
+            resetButtonState()
+            // Change button color to selected color
+            button.setBackgroundColor(Color.parseColor("#800020")) // Set your selected color
+            anyButtonClicked = true
         }
+    }
+
+    private fun resetButtonState() {
+        maleBtn.setBackgroundColor(Color.parseColor("#000000"))
+        femaleBtn.setBackgroundColor(Color.parseColor("#000000"))
     }
 }

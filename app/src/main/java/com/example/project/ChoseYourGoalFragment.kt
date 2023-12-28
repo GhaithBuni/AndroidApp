@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.navigation.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,56 +23,57 @@ private const val ARG_PARAM2 = "param2"
  */
 class ChoseYourGoalFragment : Fragment() {
 
-    private var buttonClicked = false
+    private lateinit var loseWeightBtn: Button
+    private lateinit var gainWeightBtn: Button
+    private lateinit var maintainBtn: Button
+    private lateinit var nextButton: Button
 
-    @SuppressLint("MissingInflatedId")
+    private var buttonClicked = false
+    private var anyButtonClicked = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-
         val view = inflater.inflate(R.layout.fragment_chose_your_goal, container, false)
 
-        val button = view.findViewById<Button>(R.id.lose_weight_btn)
-        val button1 = view.findViewById<Button>(R.id.gain_weight_btn)
-        val button2 = view.findViewById<Button>(R.id.maintain)
-        val nextButton = view.findViewById<Button>(R.id.Next_button)
+        loseWeightBtn = view.findViewById(R.id.lose_weight_btn)
+        gainWeightBtn = view.findViewById(R.id.gain_weight_btn)
+        maintainBtn = view.findViewById(R.id.maintain)
+        nextButton = view.findViewById(R.id.Next_button)
 
         nextButton.setOnClickListener {
-            view.findNavController().navigate(R.id.action_choseYourGoalFragment_to_activityLevel)
+            if (anyButtonClicked) {
+                view.findNavController().navigate(R.id.action_choseYourGoalFragment_to_activityLevel)
+            } else {
+                Toast.makeText(requireContext(), "Please make a choice", Toast.LENGTH_SHORT).show()
+            }
         }
 
-        setButtonClickListener(button, "#000000", "#800020")  // Adjust colors as needed
-        setButtonClickListener(button1, "#000000", "#800020")
-        setButtonClickListener(button2, "#000000", "#800020")
-
+        setButtonClickListener(loseWeightBtn)
+        setButtonClickListener(gainWeightBtn)
+        setButtonClickListener(maintainBtn)
 
         return view
-
     }
 
-    private fun setButtonClickListener(button: Button, normalColor: String, selectedColor: String) {
-        // Set the initial background color
-        button.setBackgroundColor(Color.parseColor(normalColor))
-
+    private fun setButtonClickListener(button: Button) {
         button.setOnClickListener {
-            // Toggle button color on each click
-            if (buttonClicked) {
-                // Change button color to normal
-                button.setBackgroundColor(Color.parseColor(normalColor)) // Set your normal color
-            } else {
-                // Change button color to selected color
-                button.setBackgroundColor(Color.parseColor(selectedColor)) // Set your selected color
-            }
-
-            // Toggle the flag
-            buttonClicked = !buttonClicked
+            resetButtonState()
+            // Change button color to selected color
+            button.setBackgroundColor(Color.parseColor("#800020")) // Set your selected color
+            anyButtonClicked = true
         }
     }
 
+    private fun resetButtonState() {
+        loseWeightBtn.setBackgroundColor(Color.parseColor("#000000"))
+        gainWeightBtn.setBackgroundColor(Color.parseColor("#000000"))
+        maintainBtn.setBackgroundColor(Color.parseColor("#000000"))
+    }
 }
+
 
 
 
