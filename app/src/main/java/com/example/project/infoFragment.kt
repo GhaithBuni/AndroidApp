@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,6 +38,10 @@ class infoFragment : Fragment() {
 
         setButtonClickListener(maleBtn)
         setButtonClickListener(femaleBtn)
+
+        nextButton.setOnClickListener {
+            view.findNavController().navigate(R.id.action_infoFragment_to_infoFragment2)
+        }
 
 
         return view

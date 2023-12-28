@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    tools:context=".createAccountFrgment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/account"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="60dp"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:layout_marginTop="40sp"
+        android:layout_marginLeft="35sp"/>
+
+    <EditText
+        android:id="@+id/email_account"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:backgroundTint="@color/edittextColor"
+        android:ems="10"
+        android:hint="info@gmail.com"
+        android:inputType="textEmailAddress"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:layout_marginTop="40sp"
+        android:layout_marginLeft="35sp"/>
+
+    <EditText
+        android:id="@+id/pass_account"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:backgroundTint="@color/edittextColor"
+        android:ems="10"
+        android:hint="*******"
+        android:inputType="textEmailAddress"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        />
+
+    <Button
+        android:id="@+id/info2_next"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="350dp"
+        android:backgroundTint="@color/buttonColor"
+        android:text="@string/Next"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"/>
+</LinearLayout>

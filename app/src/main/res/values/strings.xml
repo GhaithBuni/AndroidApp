@@ -23,8 +23,9 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="age">Write Your Age</string>
-
-
+    <string name="height">Write Your Height</string>
+    <string name="weight">Write Your weight</string>
+    <string name="account">Create Account</string>
 
 
 </resources>

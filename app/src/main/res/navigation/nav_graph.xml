@@ -36,5 +36,23 @@
         android:id="@+id/infoFragment"
         android:name="com.example.project.infoFragment"
         android:label="fragment_info"
-        tools:layout="@layout/fragment_info" />
+        tools:layout="@layout/fragment_info" >
+        <action
+            android:id="@+id/action_infoFragment_to_infoFragment2"
+            app:destination="@id/infoFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/infoFragment2"
+        android:name="com.example.project.infoFragment2"
+        android:label="fragment_info2"
+        tools:layout="@layout/fragment_info2" >
+        <action
+            android:id="@+id/action_infoFragment2_to_createAccountFrgment"
+            app:destination="@id/createAccountFrgment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createAccountFrgment"
+        android:name="com.example.project.createAccountFrgment"
+        android:label="fragment_create_account_frgment"
+        tools:layout="@layout/fragment_create_account_frgment" />
 </navigation>
