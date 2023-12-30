@@ -63,7 +63,7 @@
         />
 
     <Button
-        android:id="@+id/info2_next"
+        android:id="@+id/account_next"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

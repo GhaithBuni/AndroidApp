@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -68,9 +69,9 @@ class ChoseYourGoalFragment : Fragment() {
     }
 
     private fun resetButtonState() {
-        loseWeightBtn.setBackgroundColor(Color.parseColor("#000000"))
-        gainWeightBtn.setBackgroundColor(Color.parseColor("#000000"))
-        maintainBtn.setBackgroundColor(Color.parseColor("#000000"))
+        loseWeightBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
+        gainWeightBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
+        maintainBtn.background = ContextCompat.getDrawable(requireContext(),R.drawable.default_outline_button)
     }
 }
 

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
@@ -69,12 +70,15 @@ class ActivityLevel : Fragment() {
         }
     }
 
+
+
     private fun resetButtonState() {
-        lightBtn.setBackgroundColor(Color.parseColor("#000000"))
-        moderateBtn.setBackgroundColor(Color.parseColor("#000000"))
-        activeBtn.setBackgroundColor(Color.parseColor("#000000"))
-        veryActiveBtn.setBackgroundColor(Color.parseColor("#000000"))
+        lightBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
+        moderateBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
+        activeBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
+        veryActiveBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
     }
+
 
 
 }

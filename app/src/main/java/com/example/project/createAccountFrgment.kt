@@ -1,11 +1,14 @@
 package com.example.project
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
+import androidx.navigation.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +23,7 @@ private const val ARG_PARAM2 = "param2"
 class createAccountFrgment : Fragment() {
 
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +33,12 @@ class createAccountFrgment : Fragment() {
 
         val emailTxt = view.findViewById<EditText>(R.id.email_account)
         val passTxt = view.findViewById<EditText>(R.id.pass_account)
+        val nextButton = view.findViewById<Button>(R.id.account_next)
+
+        nextButton.setOnClickListener {
+            view.findNavController().navigate(R.id.action_createAccountFrgment_to_homePage)
+        }
+
 
         return view
     }

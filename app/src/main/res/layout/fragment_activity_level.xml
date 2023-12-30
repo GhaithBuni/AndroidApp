@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:backgroundTint="@color/black"
+        android:background="@drawable/default_outline_button"
         android:text="@string/light"
         android:textColor="@color/buttonColor" />
 
@@ -35,7 +35,7 @@
         android:id="@+id/moderate_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:background="@drawable/default_outline_button"
         android:layout_marginTop="30dp"
         android:text="@string/moderate"
         android:textColor="@color/buttonColor" />
@@ -43,7 +43,7 @@
         android:id="@+id/active_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:background="@drawable/default_outline_button"
         android:layout_marginTop="30dp"
         android:text="@string/active"
         android:textColor="@color/buttonColor" />
@@ -51,7 +51,7 @@
         android:id="@+id/veryActive_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:background="@drawable/default_outline_button"
         android:layout_marginTop="30dp"
         android:text="@string/VeryActive"
         android:textColor="@color/buttonColor" />

@@ -54,5 +54,24 @@
         android:id="@+id/createAccountFrgment"
         android:name="com.example.project.createAccountFrgment"
         android:label="fragment_create_account_frgment"
-        tools:layout="@layout/fragment_create_account_frgment" />
+        tools:layout="@layout/fragment_create_account_frgment" >
+        <action
+            android:id="@+id/action_createAccountFrgment_to_homePage"
+            app:destination="@id/homePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/homePage"
+        android:name="com.example.project.homePage"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" />
+    <fragment
+        android:id="@+id/myProfile"
+        android:name="com.example.project.myProfile"
+        android:label="fragment_my_profile"
+        tools:layout="@layout/fragment_my_profile" />
+    <fragment
+        android:id="@+id/graphFragment"
+        android:name="com.example.project.graphFragment"
+        android:label="fragment_graph"
+        tools:layout="@layout/fragment_graph" />
 </navigation>
