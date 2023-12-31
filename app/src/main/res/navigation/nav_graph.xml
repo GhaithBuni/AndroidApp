@@ -63,15 +63,36 @@
         android:id="@+id/homePage"
         android:name="com.example.project.homePage"
         android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePage_to_graphFragment"
+            app:destination="@id/graphFragment" />
+        <action
+            android:id="@+id/action_homePage_to_myProfile"
+            app:destination="@id/myProfile" />
+    </fragment>
     <fragment
         android:id="@+id/myProfile"
         android:name="com.example.project.myProfile"
         android:label="fragment_my_profile"
-        tools:layout="@layout/fragment_my_profile" />
+        tools:layout="@layout/fragment_my_profile" >
+        <action
+            android:id="@+id/action_myProfile_to_graphFragment"
+            app:destination="@id/graphFragment" />
+        <action
+            android:id="@+id/action_myProfile_to_homePage"
+            app:destination="@id/homePage" />
+    </fragment>
     <fragment
         android:id="@+id/graphFragment"
         android:name="com.example.project.graphFragment"
         android:label="fragment_graph"
-        tools:layout="@layout/fragment_graph" />
+        tools:layout="@layout/fragment_graph" >
+        <action
+            android:id="@+id/action_graphFragment_to_myProfile"
+            app:destination="@id/myProfile" />
+        <action
+            android:id="@+id/action_graphFragment_to_homePage"
+            app:destination="@id/homePage" />
+    </fragment>
 </navigation>

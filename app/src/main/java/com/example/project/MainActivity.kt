@@ -9,11 +9,11 @@ import androidx.fragment.app.replace
 import com.example.project.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+
 class MainActivity : AppCompatActivity() {
 
-    private val fragment1 = homePage()
-    private val fragment2 = graphFragment()
-    private val fragment3 = myProfile()
+
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 
 
 }

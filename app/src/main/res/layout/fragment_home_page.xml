@@ -8,14 +8,7 @@
     android:background="@color/black"
     tools:context=".homePage">
 
-    <FrameLayout
-        android:id="@+id/frame_layout1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+
 
 
 
@@ -78,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
         app:layout_constraintEnd_toEndOf="@+id/progress_bar"
@@ -180,8 +173,8 @@
         app:layout_constraintEnd_toEndOf="@+id/Lunch"
         app:layout_constraintHorizontal_bias="0.107"
         app:layout_constraintStart_toStartOf="@+id/Lunch"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.635" />
+        app:layout_constraintTop_toTopOf="@+id/Lunch"
+        app:layout_constraintVertical_bias="0.023" />
 
     <TextView
         android:id="@+id/textView7"
@@ -218,8 +211,8 @@
         app:layout_constraintEnd_toEndOf="@+id/dinner"
         app:layout_constraintHorizontal_bias="0.107"
         app:layout_constraintStart_toStartOf="@+id/dinner"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742"
+        app:layout_constraintTop_toTopOf="@+id/dinner"
+        app:layout_constraintVertical_bias="0.031"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -261,22 +254,8 @@
         app:layout_constraintEnd_toEndOf="@+id/snack_meal"
         app:layout_constraintHorizontal_bias="0.107"
         app:layout_constraintStart_toStartOf="@+id/snack_meal"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.857"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/Kcal"
-        android:layout_width="222dp"
-        android:layout_height="29dp"
-        android:text="Recommended Calorie 500 Kcal"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/snack_meal"
-        app:layout_constraintEnd_toEndOf="@+id/snack_meal"
-        app:layout_constraintHorizontal_bias="0.177"
-        app:layout_constraintStart_toStartOf="@+id/snack_meal"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toTopOf="@+id/snack_meal"
+        app:layout_constraintVertical_bias="0.049"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -353,8 +332,21 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/menu" />
+        app:menu="@menu/menu" >
 
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <TextView
+        android:id="@+id/Kcal"
+        android:layout_width="222dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="Recommended Calorie 500 Kcal"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/snack_meal"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintHorizontal_bias="0.177" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
