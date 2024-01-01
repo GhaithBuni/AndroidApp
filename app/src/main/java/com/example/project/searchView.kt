@@ -1,0 +1,70 @@
+package com.example.project
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.ListView
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
+import androidx.navigation.findNavController
+
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+
+
+class searchView : Fragment() {
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+
+        val view = inflater.inflate(R.layout.fragment_search_view, container, false)
+
+        val backBtn = view.findViewById<Button>(R.id.backBtn)
+
+        backBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_searchView2_to_homePage)
+        }
+
+        val search = view.findViewById<SearchView>(R.id.searchView)
+        val listView = view.findViewById<ListView>(R.id.listView)
+
+        val names = arrayOf("Egg","meat", "chicken", "Salmon","Rice", "Oat", "Potato")
+
+
+        val adapter: ArrayAdapter<String> = ArrayAdapter(requireContext(), R.layout.text_color, names)
+
+        listView.adapter = adapter
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                search.clearFocus()
+                if(names.contains(query))
+                {
+                    adapter.filter.filter(query)
+                }else{
+                    Toast.makeText(requireContext(), "Item not Found", Toast.LENGTH_SHORT).show()
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return false
+            }
+
+        })
+        // Inflate the layout for this fragment
+        return view
+    }
+
+
+}

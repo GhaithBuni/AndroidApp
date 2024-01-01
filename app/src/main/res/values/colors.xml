@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="buttonColor">#F6752C</color>
     <color name="edittextColor">#0EFB7F</color>
+    <color name="bar_color">#334155</color>
 </resources>

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -23,6 +24,11 @@ class homePage : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home_page, container, false)
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottomNavigationView2)
+        val breakfastBtn = view.findViewById<Button>(R.id.breakfast_btn)
+
+        breakfastBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_homePage_to_searchView2)
+        }
 
         bottomNavigationView.setOnItemSelectedListener  { menuItem ->
             when (menuItem.itemId) {

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainPage_to_choseYourGoalFragment"
             app:destination="@id/choseYourGoalFragment" />
+        <action
+            android:id="@+id/action_mainPage_to_homePage"
+            app:destination="@id/homePage" />
     </fragment>
     <fragment
         android:id="@+id/choseYourGoalFragment"
@@ -70,6 +73,9 @@
         <action
             android:id="@+id/action_homePage_to_myProfile"
             app:destination="@id/myProfile" />
+        <action
+            android:id="@+id/action_homePage_to_searchView2"
+            app:destination="@id/searchView2" />
     </fragment>
     <fragment
         android:id="@+id/myProfile"
@@ -93,6 +99,15 @@
             app:destination="@id/myProfile" />
         <action
             android:id="@+id/action_graphFragment_to_homePage"
+            app:destination="@id/homePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchView2"
+        android:name="com.example.project.searchView"
+        android:label="fragment_search_view"
+        tools:layout="@layout/fragment_search_view" >
+        <action
+            android:id="@+id/action_searchView2_to_homePage"
             app:destination="@id/homePage" />
     </fragment>
 </navigation>

@@ -29,11 +29,16 @@ class MainPage : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_main_page ,container ,false)
         val startButton = view.findViewById<Button>(R.id.create_button)
+        val logInBtn = view.findViewById<Button>(R.id.Login_button)
 
 
 
         startButton.setOnClickListener{
             view.findNavController().navigate(R.id.action_mainPage_to_choseYourGoalFragment)
+        }
+
+        logInBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_mainPage_to_homePage)
         }
         return view;
         return inflater.inflate(R.layout.fragment_main_page, container, false)
