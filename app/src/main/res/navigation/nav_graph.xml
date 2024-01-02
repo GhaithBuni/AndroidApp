@@ -76,6 +76,15 @@
         <action
             android:id="@+id/action_homePage_to_searchView2"
             app:destination="@id/searchView2" />
+        <action
+            android:id="@+id/action_homePage_to_lunch"
+            app:destination="@id/lunch" />
+        <action
+            android:id="@+id/action_homePage_to_dinner2"
+            app:destination="@id/dinner2" />
+        <action
+            android:id="@+id/action_homePage_to_snack"
+            app:destination="@id/snack" />
     </fragment>
     <fragment
         android:id="@+id/myProfile"
@@ -108,6 +117,30 @@
         tools:layout="@layout/fragment_search_view" >
         <action
             android:id="@+id/action_searchView2_to_homePage"
+            app:destination="@id/homePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/lunch"
+        android:name="com.example.project.Lunch"
+        android:label="Lunch" >
+        <action
+            android:id="@+id/action_lunch_to_homePage"
+            app:destination="@id/homePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/dinner2"
+        android:name="com.example.project.Dinner"
+        android:label="Dinner" >
+        <action
+            android:id="@+id/action_dinner2_to_homePage"
+            app:destination="@id/homePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/snack"
+        android:name="com.example.project.Snack"
+        android:label="Snack" >
+        <action
+            android:id="@+id/action_snack_to_homePage"
             app:destination="@id/homePage" />
     </fragment>
 </navigation>

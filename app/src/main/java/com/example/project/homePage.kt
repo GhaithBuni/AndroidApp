@@ -25,9 +25,22 @@ class homePage : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home_page, container, false)
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottomNavigationView2)
         val breakfastBtn = view.findViewById<Button>(R.id.breakfast_btn)
+        val lunchBtn = view.findViewById<Button>(R.id.lunch_btn)
+        val dinnerBtn = view.findViewById<Button>(R.id.dinner_btn)
+        val snackBtn = view.findViewById<Button>(R.id.snack_btn)
 
         breakfastBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_homePage_to_searchView2)
+        }
+
+        lunchBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_homePage_to_lunch)
+        }
+        dinnerBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_homePage_to_dinner2)
+        }
+        snackBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_homePage_to_snack)
         }
 
         bottomNavigationView.setOnItemSelectedListener  { menuItem ->
