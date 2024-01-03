@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "151051886448",
+    "project_id": "mycalorie-4a1d7",
+    "storage_bucket": "mycalorie-4a1d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151051886448:android:d974c812e8b544e748f9b5",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA08f626ypmUWzKooJiONtAgEgLcfumq9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
