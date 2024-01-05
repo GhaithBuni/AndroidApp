@@ -14,6 +14,9 @@ import androidx.navigation.findNavController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.database
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +30,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class MainPage : Fragment() {
     private lateinit var auth: FirebaseAuth
-
+    private lateinit var database: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +38,7 @@ class MainPage : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         auth = Firebase.auth
-
+        database = FirebaseDatabase.getInstance().reference
         val view = inflater.inflate(R.layout.fragment_main_page ,container ,false)
         val startButton = view.findViewById<Button>(R.id.create_button)
         val logInBtn = view.findViewById<Button>(R.id.Login_button)
@@ -50,9 +53,10 @@ class MainPage : Fragment() {
 
         logInBtn.setOnClickListener {
         //    view.findNavController().navigate(R.id.action_mainPage_to_homePage)
+            writeNewUser("user1","ghaith")
         }
 
-        logInBtn.setOnClickListener {
+       /* logInBtn.setOnClickListener {
             val email = emailTxt.text.toString()
             val password = passTxt.text.toString()
 
@@ -73,12 +77,26 @@ class MainPage : Fragment() {
                         ).show()
                     }
                 }
-        }
+        }*/
         return view;
+
+
+
+
 
     }
 
 
 
+    private fun writeNewUser(userId: String, name: String) {
+        val user = User(name)
+
+        database.child("users").child(userId).setValue(user)
+
+
+    }
+
 
 }
+
+

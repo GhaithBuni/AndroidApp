@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/createAccountFrgment"
-        android:name="com.example.project.createAccountFrgment"
+        android:name="com.example.project.CreateAccountFrgment"
         android:label="fragment_create_account_frgment"
         tools:layout="@layout/fragment_create_account_frgment" >
         <action

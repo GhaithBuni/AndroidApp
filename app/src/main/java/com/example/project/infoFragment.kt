@@ -10,8 +10,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,15 +35,18 @@ class infoFragment : Fragment() {
     private lateinit var nextButton: Button
     private lateinit var ageText: EditText
 
-    private var buttonClicked = false
-    private var anyButtonClicked = false
 
+    private var anyButtonClicked = false
+    lateinit var buttonClicked : String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        val sharedViewModel: SharedViewModel by viewModels()
+
         val view = inflater.inflate(R.layout.fragment_info, container, false)
+
 
         maleBtn = view.findViewById(R.id.male_btn)
         femaleBtn = view.findViewById(R.id.female_btn)
@@ -53,6 +61,8 @@ class infoFragment : Fragment() {
                 val age = ageText.text.toString().trim()
                 if (age.isNotEmpty()) {
                     view.findNavController().navigate(R.id.action_infoFragment_to_infoFragment2)
+                    val sharedViewModel: SharedViewModel by activityViewModels()
+                    sharedViewModel.age = age
                 } else {
                     Toast.makeText(requireContext(), "Please enter your age", Toast.LENGTH_SHORT).show()
                 }
@@ -70,6 +80,12 @@ class infoFragment : Fragment() {
             // Change button color to selected color
             button.setBackgroundColor(Color.parseColor("#800020")) // Set your selected color
             anyButtonClicked = true
+            buttonClicked = button.text.toString()
+            val sharedViewModel: SharedViewModel by activityViewModels()
+
+            // Set the value in the view model
+            sharedViewModel.gender = buttonClicked
+
         }
     }
 

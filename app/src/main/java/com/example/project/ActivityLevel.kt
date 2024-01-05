@@ -9,8 +9,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +34,7 @@ class ActivityLevel : Fragment() {
     private lateinit var activeBtn: Button
     private lateinit var veryActiveBtn: Button
     private lateinit var nextButton: Button
-    private var buttonClicked = false
+    private lateinit var buttonClicked: String
     private var anyButtonClicked = false
 
     override fun onCreateView(
@@ -38,6 +43,7 @@ class ActivityLevel : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_activity_level, container, false)
+        val sharedViewModel: SharedViewModel by viewModels()
 
         lightBtn = view.findViewById(R.id.Light_btn)
         moderateBtn = view.findViewById(R.id.moderate_btn)
@@ -67,18 +73,27 @@ class ActivityLevel : Fragment() {
             // Change button color to selected color
             button.setBackgroundColor(Color.parseColor("#800020")) // Set your selected color
             anyButtonClicked = true
+            buttonClicked = button.text.toString()
+            val sharedViewModel: SharedViewModel by activityViewModels()
+
+            // Set the value in the view model
+            sharedViewModel.activityLevel = buttonClicked
+
+
         }
     }
 
 
-
     private fun resetButtonState() {
-        lightBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
-        moderateBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
-        activeBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
-        veryActiveBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
+        lightBtn.background =
+            ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
+        moderateBtn.background =
+            ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
+        activeBtn.background =
+            ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
+        veryActiveBtn.background =
+            ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
     }
-
 
 
 }
