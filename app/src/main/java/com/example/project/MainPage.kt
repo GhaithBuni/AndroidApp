@@ -51,33 +51,32 @@ class MainPage : Fragment() {
             view.findNavController().navigate(R.id.action_mainPage_to_choseYourGoalFragment)
         }
 
-        logInBtn.setOnClickListener {
-        //    view.findNavController().navigate(R.id.action_mainPage_to_homePage)
-            writeNewUser("user1","ghaith")
-        }
 
-       /* logInBtn.setOnClickListener {
+
+       logInBtn.setOnClickListener {
             val email = emailTxt.text.toString()
             val password = passTxt.text.toString()
 
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(requireActivity()) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithEmail:success")
-                        val user = auth.currentUser
-                        view.findNavController().navigate(R.id.action_mainPage_to_homePage)
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(
-                            requireContext(),
-                            "Authentication failed.",
-                            Toast.LENGTH_SHORT,
-                        ).show()
-                    }
-                }
-        }*/
+           if(email.isNotEmpty() && password.isNotEmpty()) {
+               auth.signInWithEmailAndPassword(email, password)
+                   .addOnCompleteListener(requireActivity()) { task ->
+                       if (task.isSuccessful) {
+                           // Sign in success, update UI with the signed-in user's information
+                           Log.d(TAG, "signInWithEmail:success")
+                           val user = auth.currentUser
+                           view.findNavController().navigate(R.id.action_mainPage_to_homePage)
+                       } else {
+                           // If sign in fails, display a message to the user.
+                           Log.w(TAG, "signInWithEmail:failure", task.exception)
+                           Toast.makeText(
+                               requireContext(),
+                               "Authentication failed.",
+                               Toast.LENGTH_SHORT,
+                           ).show()
+                       }
+                   }
+           }
+        }
         return view;
 
 
@@ -88,13 +87,7 @@ class MainPage : Fragment() {
 
 
 
-    private fun writeNewUser(userId: String, name: String) {
-        val user = User(name)
 
-        database.child("users").child(userId).setValue(user)
-
-
-    }
 
 
 }
