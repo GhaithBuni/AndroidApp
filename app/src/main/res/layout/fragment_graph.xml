@@ -7,7 +7,7 @@
     android:background="@color/black"
 
     android:orientation="vertical"
-    tools:context=".graphFragment">
+    tools:context=".GraphFragment">
 
 
     <ScrollView

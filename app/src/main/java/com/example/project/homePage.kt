@@ -11,21 +11,16 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.getValue
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlin.math.round
 
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
 
 class homePage : Fragment() {
@@ -62,22 +57,27 @@ class homePage : Fragment() {
         val sharedViewModel: SharedViewModel by activityViewModels()
         val user = auth.currentUser?.uid
 
-
+        var kcal: Int? = null
         if (user != null) {
+
             database.child("users").child(user).child("totalCalories").get().addOnSuccessListener { dataSnapshot ->
                 // Check if the data exists
                 if (dataSnapshot.exists()) {
                     // Retrieve the value as a Double
-                    val kcal: Int? = dataSnapshot.getValue(Int::class.java)
+                   kcal= dataSnapshot.getValue(Int::class.java)
 
                     // Check if kcal is not null before using it
                     if (kcal != null) {
                         baseGoal.text = "Base Goal\n$kcal"
-                        prog.max = kcal
-                        breakfast_Rec.text = "Recommended Calorie " + round(kcal * 0.25  ).toString() +" - "+round(kcal * 0.3 ).toString() + " Kcal"
-                        lunch_Rec.text = "Recommended Calorie " + round(kcal * 0.35  ).toString() +" - "+round(kcal * 0.4 ).toString() + " Kcal"
-                        dinner_Rec.text = "Recommended Calorie " + round(kcal * 0.25  ).toString() +" - "+round(kcal * 0.3 ).toString() + " Kcal"
-                        snack_Rec.text = "Recommended Calorie " + round(kcal * 0.05  ).toString() +" - "+round(kcal * 0.1 ).toString() + " Kcal"
+                        prog.max = kcal as Int
+                        breakfast_Rec.text = "Recommended Calorie " + round(kcal!! * 0.25  ).toString() +" - "+round(
+                            kcal!! * 0.3 ).toString() + " Kcal"
+                        lunch_Rec.text = "Recommended Calorie " + round(kcal!! * 0.35  ).toString() +" - "+round(
+                            kcal!! * 0.4 ).toString() + " Kcal"
+                        dinner_Rec.text = "Recommended Calorie " + round(kcal!! * 0.25  ).toString() +" - "+round(
+                            kcal!! * 0.3 ).toString() + " Kcal"
+                        snack_Rec.text = "Recommended Calorie " + round(kcal!! * 0.05  ).toString() +" - "+round(
+                            kcal!! * 0.1 ).toString() + " Kcal"
                     } else {
                         // Handle the case where kcal is null
                         Log.e("firebase", "Total calories is null")
@@ -91,22 +91,22 @@ class homePage : Fragment() {
             }
         }
 
-
-
-
-
-
-
-
         if (user != null) {
-            database.child("users").child(user).child("remaining").child("value").get().addOnSuccessListener { dataSnapShot->
-                if(dataSnapShot.exists()){
+            database.child("users").child(user).child("remaining").child("value").get().addOnSuccessListener { dataSnapShot ->
+                if (dataSnapShot.exists()) {
                     val n1 = dataSnapShot.getValue(Double::class.java)
-                    if(n1 != null){
-                        sharedViewModel.previousRemCalValue = n1
-                        println(sharedViewModel.previousRemCalValue)
-                        rem_Cal.text = "$n1\nKcal"
-                        prog.progress = n1.toInt()
+
+                    if (n1 != null) {
+                        // Check if n1 is greater than or equal to kcal
+                        if (n1 >= kcal!!) {
+                            sharedViewModel.previousRemCalValue = 0.0
+                            rem_Cal.text = "0.0\nKcal"
+                            prog.progress = 0
+                        } else {
+                            sharedViewModel.previousRemCalValue = n1
+                            rem_Cal.text = "$n1\nKcal"
+                            prog.progress = n1.toInt()
+                        }
                     }
                 }
             }
@@ -137,11 +137,7 @@ class homePage : Fragment() {
                     return@setOnItemSelectedListener true
                 }
 
-                R.id.menu_graph -> {
-                    // Replace with your actual action ID
-                    view.findNavController().navigate(R.id.action_homePage_to_graphFragment)
-                    return@setOnItemSelectedListener true
-                }
+
 
                 R.id.menu_profile -> {
                     // Replace with your actual action ID

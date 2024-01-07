@@ -19,7 +19,7 @@ import java.util.Calendar
 
 
 
-class graphFragment : Fragment() {
+class GraphFragment : Fragment() {
 
 
 
@@ -39,7 +39,7 @@ class graphFragment : Fragment() {
             view.findViewById<BottomNavigationView>(R.id.bottomNavigationView2)
 
         lineGraphView = view.findViewById(R.id.graph1)
-        bottomNavigationView.menu.findItem(R.id.menu_graph).isChecked = true
+
 
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -48,10 +48,7 @@ class graphFragment : Fragment() {
                     return@setOnItemSelectedListener true
                 }
 
-                R.id.menu_graph -> {
-                    view.findNavController().navigate(R.id.graphFragment)
-                    return@setOnItemSelectedListener true
-                }
+
 
                 R.id.menu_profile -> {
                     view.findNavController().navigate(R.id.action_graphFragment_to_myProfile)

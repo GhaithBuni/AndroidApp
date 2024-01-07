@@ -11,13 +11,6 @@
 
         app:theme="@style/MyMenuItemThemeOverlay" />
 
-    <item
-        android:id="@+id/menu_graph"
-        android:icon="@drawable/baseline_network_ping_24"
-        android:title="Graph"
-        app:showAsAction="ifRoom"
-        app:actionViewClass="android.widget.ImageButton"
-        app:theme="@style/MyMenuItemThemeOverlay" />
 
     <item
         android:id="@+id/menu_profile"

@@ -1,6 +1,5 @@
 package com.example.project
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,22 +10,10 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ChoseYourGoalFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class ChoseYourGoalFragment : Fragment() {
 
     private lateinit var loseWeightBtn: Button
@@ -42,7 +29,6 @@ class ChoseYourGoalFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val sharedViewModel: SharedViewModel by viewModels()
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_chose_your_goal, container, false)
 

@@ -88,7 +88,7 @@
     </fragment>
     <fragment
         android:id="@+id/myProfile"
-        android:name="com.example.project.myProfile"
+        android:name="com.example.project.MyProfile"
         android:label="fragment_my_profile"
         tools:layout="@layout/fragment_my_profile" >
         <action
@@ -100,7 +100,7 @@
     </fragment>
     <fragment
         android:id="@+id/graphFragment"
-        android:name="com.example.project.graphFragment"
+        android:name="com.example.project.GraphFragment"
         android:label="fragment_graph"
         tools:layout="@layout/fragment_graph" >
         <action

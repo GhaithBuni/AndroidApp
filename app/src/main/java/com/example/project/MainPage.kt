@@ -16,18 +16,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.database
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MainPage.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class MainPage : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
@@ -63,7 +54,6 @@ class MainPage : Fragment() {
                        if (task.isSuccessful) {
                            // Sign in success, update UI with the signed-in user's information
                            Log.d(TAG, "signInWithEmail:success")
-                           val user = auth.currentUser
                            view.findNavController().navigate(R.id.action_mainPage_to_homePage)
                        } else {
                            // If sign in fails, display a message to the user.
@@ -77,10 +67,7 @@ class MainPage : Fragment() {
                    }
            }
         }
-        return view;
-
-
-
+        return view
 
 
     }

@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
-import android.widget.PopupMenu
 import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
@@ -25,18 +24,11 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.childEvents
-import com.google.firebase.database.getValue
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import org.w3c.dom.Comment
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 
+
+
+@Suppress("NAME_SHADOWING")
 class searchView : Fragment() {
 
     private lateinit var database: DatabaseReference
@@ -53,7 +45,6 @@ class searchView : Fragment() {
         database = FirebaseDatabase.getInstance().getReference("Food")
         myRef = FirebaseDatabase.getInstance().reference
         val view = inflater.inflate(R.layout.fragment_search_view, container, false)
-        val rac = view.findViewById<TextView>(R.id.calories_Prog)
         auth = FirebaseAuth.getInstance()
 
         val backBtn = view.findViewById<Button>(R.id.backBtn)
@@ -82,10 +73,7 @@ class searchView : Fragment() {
                 // Check if the key is not null and matches the expected format
                 if (foodName != null && dataSnapshot.hasChild("Calories")) {
                     // Get the specific properties of the item
-                    val calories = dataSnapshot.child("Calories").value?.toString() ?: "N/A"
-                    val carbs = dataSnapshot.child("Carbs").value?.toString() ?: "N/A"
-                    val fat = dataSnapshot.child("Fat").value?.toString() ?: "N/A"
-                    val protein = dataSnapshot.child("Protein").value?.toString() ?: "N/A"
+
 
                     // Create a string representation of the item
                     val comment = foodName
@@ -150,7 +138,7 @@ class searchView : Fragment() {
     }
 
 
-    @SuppressLint("MissingInflatedId", "SetTextI18n")
+    @SuppressLint("MissingInflatedId", "SetTextI18n", "InflateParams")
     private fun showPopupLayout(foodName: String, anchorView: View) {
         val foodRef = database.child(foodName)
 
@@ -194,7 +182,6 @@ class searchView : Fragment() {
                 val valueEditText = view.findViewById<EditText>(R.id.editText)
                 val addBtn = view.findViewById<Button>(R.id.add_btn)
 
-                var new_value: Double = 0.0
 
                 addBtn.setOnClickListener {
                     // Get the text from the EditText

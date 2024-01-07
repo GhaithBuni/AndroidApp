@@ -11,23 +11,10 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [infoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class infoFragment : Fragment() {
 
     private lateinit var maleBtn: Button
@@ -43,7 +30,6 @@ class infoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val sharedViewModel: SharedViewModel by viewModels()
 
         val view = inflater.inflate(R.layout.fragment_info, container, false)
 

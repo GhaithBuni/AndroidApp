@@ -41,40 +41,40 @@ class CreateAccountFrgment : Fragment() {
         val heightCal = sharedViewModel1.height
         val ageCal = sharedViewModel1.age
 
-        var Bmr: Double = 0.0
-        var Amr: Double = 0.0
-        var TotalCalories: Double = 0.0
+        var bmr = 0.0
+        var amr = 0.0
+        var totalCalories = 0.0
 
         if (sharedViewModel1.gender == "Female") {
 
             if (weightCal != null && heightCal != null && ageCal != null) {
-                Bmr = 655.1 + (9.563 * weightCal.toDouble()) + (1.850 * heightCal.toDouble() ) - (4.676 * ageCal.toInt())
+                bmr = 655.1 + (9.563 * weightCal.toDouble()) + (1.850 * heightCal.toDouble() ) - (4.676 * ageCal.toInt())
             }
 
         }
         if (sharedViewModel1.gender == "Male") {
 
             if (weightCal != null && heightCal != null && ageCal != null) {
-                Bmr = 66.47 + (13.75 * weightCal.toDouble()) + (5.003 * heightCal.toDouble() ) - (6.775 * ageCal.toInt())
+                bmr = 66.47 + (13.75 * weightCal.toDouble()) + (5.003 * heightCal.toDouble() ) - (6.775 * ageCal.toInt())
             }
 
         }
 
         if (sharedViewModel1.activityLevel == "Light: exercise 1-3 times/week"){
-            Amr = Bmr * 1.375
+            amr = bmr * 1.375
         }
         if (sharedViewModel1.activityLevel == "Moderate_ exercise 4-5 times/week"){
-            Amr = Bmr * 1.55
+            amr = bmr * 1.55
         }
         if (sharedViewModel1.activityLevel == "Active: daily exercise or intense exercise 3-4 times/week"){
-            Amr = Bmr * 1.725
+            amr = bmr * 1.725
         }
         if (sharedViewModel1.activityLevel == "Very Active: intense exercise 6-7 times/week"){
-            Amr = Bmr * 1.9
+            amr = bmr * 1.9
 
         }
         if (sharedViewModel1.userGoal == "Lose Weight"){
-            TotalCalories = Amr - 500.0
+            totalCalories = amr - 500.0
         }
 
 
@@ -82,7 +82,7 @@ class CreateAccountFrgment : Fragment() {
 
         val sharedViewModel: SharedViewModel by activityViewModels()
         // Set the value in the view model
-        sharedViewModel.totalCalories = TotalCalories
+        sharedViewModel.totalCalories = totalCalories
 
         nextButton.setOnClickListener {
 
@@ -108,7 +108,7 @@ class CreateAccountFrgment : Fragment() {
 
                         // Include UID in the user object
                         user.uid = uid
-                        user.totalCalories = round( TotalCalories / 100.0) * 100.0
+                        user.totalCalories = round( totalCalories / 100.0) * 100.0
 
                         // Store user data in the database
                         database.child("users").child(uid ?: "").setValue(user)

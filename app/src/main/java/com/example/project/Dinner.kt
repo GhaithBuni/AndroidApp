@@ -25,21 +25,12 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Dinner.newInstance] factory method to
- * create an instance of this fragment.
- */
 
 private lateinit var database: DatabaseReference
 private lateinit var auth: FirebaseAuth
 private lateinit var myRef: DatabaseReference
 
+@Suppress("NAME_SHADOWING")
 class Dinner : Fragment() {
     // TODO: Rename and change types of parameters
 
@@ -80,10 +71,7 @@ class Dinner : Fragment() {
                 // Check if the key is not null and matches the expected format
                 if (foodName != null && dataSnapshot.hasChild("Calories")) {
                     // Get the specific properties of the item
-                    val calories = dataSnapshot.child("Calories").value?.toString() ?: "N/A"
-                    val carbs = dataSnapshot.child("Carbs").value?.toString() ?: "N/A"
-                    val fat = dataSnapshot.child("Fat").value?.toString() ?: "N/A"
-                    val protein = dataSnapshot.child("Protein").value?.toString() ?: "N/A"
+
 
                     // Create a string representation of the item
                     val comment = foodName
@@ -148,7 +136,7 @@ class Dinner : Fragment() {
     }
 
 
-    @SuppressLint("MissingInflatedId", "SetTextI18n")
+    @SuppressLint("MissingInflatedId", "SetTextI18n", "InflateParams")
     private fun showPopupLayout(foodName: String, anchorView: View) {
         val foodRef = database.child(foodName)
 
@@ -192,7 +180,7 @@ class Dinner : Fragment() {
                 val valueEditText = view.findViewById<EditText>(R.id.editText)
                 val addBtn = view.findViewById<Button>(R.id.add_btn)
 
-                var new_value: Double = 0.0
+                var newValue: Double
 
                 addBtn.setOnClickListener {
                     // Get the text from the EditText and convert it to Double
@@ -203,11 +191,11 @@ class Dinner : Fragment() {
 
                         // Assuming "calories" is a constant value
                         if (calories != null) {
-                            new_value = (calories / 100) * inputValue
+                            newValue = (calories / 100) * inputValue
                             val sharedViewModel: SharedViewModel by activityViewModels()
-                            sharedViewModel.newValue = new_value
+                            sharedViewModel.newValue = newValue
 
-                            sharedViewModel.updateRemCalValue(new_value)
+                            sharedViewModel.updateRemCalValue(newValue)
                             val user = auth.currentUser?.uid
                             if (user != null) {
                                 myRef.child("users").child(user).child("remaining")
