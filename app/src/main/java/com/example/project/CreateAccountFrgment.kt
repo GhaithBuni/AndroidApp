@@ -16,7 +16,14 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlin.math.round
 
-
+/**
+ * Fragmentklass för att skapa ett användarkonto.
+ *
+ * Detta fragment låter användaren ange e-post och lösenord för att skapa ett konto.
+ * Den beräknar också totala kaloribehovet baserat på användarens angivna information och mål.
+ *
+ * @constructor Skapar en ny instans av [CreateAccountFrgment].
+ */
 class CreateAccountFrgment : Fragment() {
 
     private lateinit var auth: FirebaseAuth

@@ -57,7 +57,11 @@ class ChoseYourGoalFragment : Fragment() {
 
         return view
     }
-
+    /**
+     * Ställer in en klicklyssnare för den angivna knappen för att hantera händelser vid knappklick.
+     *
+     * @param button Knappen för vilken klicklyssnaren ska ställas in.
+     */
     private fun setButtonClickListener(button: Button) {
         button.setOnClickListener {
             resetButtonState()
@@ -75,7 +79,9 @@ class ChoseYourGoalFragment : Fragment() {
 
         }
     }
-
+    /**
+     * Återställer tillståndet för alla knappar för aktivitetsnivå till deras standardtillstånd.
+     */
     private fun resetButtonState() {
         loseWeightBtn.background =
             ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)

@@ -17,7 +17,14 @@ import com.google.firebase.auth.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-
+/**
+ * Fragmentklass för huvudsidan i applikationen.
+ *
+ * Detta fragment möjliggör användarens navigering till att antingen skapa ett nytt konto
+ * eller logga in med befintliga autentiseringsuppgifter.
+ *
+ * @constructor Skapar en ny instans av [MainPage].
+ */
 
 class MainPage : Fragment() {
     private lateinit var auth: FirebaseAuth

@@ -24,7 +24,15 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-
+/**
+ * Fragmentklass för sökning och visning av livsmedelsinformation.
+ *
+ * Detta fragment ger användaren möjlighet att söka och visa information om olika livsmedel.
+ * Användaren kan även välja ett livsmedel för att se detaljerad information och lägga till
+ * en mängd av det livsmedlet till sitt dagliga intag.
+ *
+ * @constructor Skapar en ny instans av [searchView].
+ */
 
 @Suppress("NAME_SHADOWING")
 class Snack : Fragment() {
@@ -60,24 +68,18 @@ class Snack : Fragment() {
 
         listView.adapter = adapter
 
-        // Inflate the layout for this fragment
-
+        // Skapa en lyssnare för att hämta livsmedelsinformation från Firebase
         val childEventListener = object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
-                // Get the key of the item, e.g., "Appel", "Banana", etc.
                 val foodName = dataSnapshot.key
 
-                // Check if the key is not null and matches the expected format
                 if (foodName != null && dataSnapshot.hasChild("Calories")) {
 
 
-                    // Create a string representation of the item
                     val comment = foodName
 
-                    // Add the string representation to the list
                     foodNames.add(comment)
 
-                    // Update the adapter
                     adapter.notifyDataSetChanged()
                 }
             }
@@ -106,6 +108,7 @@ class Snack : Fragment() {
 
         database.addChildEventListener(childEventListener)
 
+        // Skapa en lyssnare för sökvy
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 search.clearFocus()
@@ -166,20 +169,16 @@ class Snack : Fragment() {
                     window.dismiss()
                 }
 
-                // Get the root view to calculate the center
                 val rootView = anchorView.rootView
 
-                // Show the PopupWindow at the center
                 window.showAtLocation(rootView, Gravity.CENTER, 0, 0)
 
-                // Access the EditText and Button from the existing layout (view)
                 val valueEditText = view.findViewById<EditText>(R.id.editText)
                 val addBtn = view.findViewById<Button>(R.id.add_btn)
 
                 var new_value: Double
 
                 addBtn.setOnClickListener {
-                    // Get the text from the EditText and convert it to Double
                     val inputText = valueEditText.text.toString()
 
                     if (inputText.isNotBlank()) {

@@ -12,7 +12,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 
 
-
+/**
+ * Fragmentklass för att ange ytterligare information som längd och vikt.
+ *
+ * Detta fragment låter användaren ange ytterligare information som längd och vikt och
+ * navigera till nästa skärm för att skapa ett konto.
+ *
+ * @constructor Skapar en ny instans av [infoFragment2].
+ */
 class infoFragment2 : Fragment() {
 
 

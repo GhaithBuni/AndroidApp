@@ -26,7 +26,15 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 
-
+/**
+ * Fragmentklass för sökning och visning av livsmedelsinformation.
+ *
+ * Detta fragment ger användaren möjlighet att söka och visa information om olika livsmedel.
+ * Användaren kan även välja ett livsmedel för att se detaljerad information och lägga till
+ * en mängd av det livsmedlet till sitt dagliga intag.
+ *
+ * @constructor Skapar en ny instans av [searchView].
+ */
 
 @Suppress("NAME_SHADOWING")
 class searchView : Fragment() {
@@ -62,26 +70,21 @@ class searchView : Fragment() {
 
         listView.adapter = adapter
 
-        // Uncomment and adapt the following code if you want to implement search functionality
 
 
+        // Skapa en lyssnare för att hämta livsmedelsinformation från Firebase
         val childEventListener = object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
-                // Get the key of the item, e.g., "Appel", "Banana", etc.
+
                 val foodName = dataSnapshot.key
 
-                // Check if the key is not null and matches the expected format
                 if (foodName != null && dataSnapshot.hasChild("Calories")) {
-                    // Get the specific properties of the item
 
 
-                    // Create a string representation of the item
                     val comment = foodName
 
-                    // Add the string representation to the list
                     foodNames.add(comment)
 
-                    // Update the adapter
                     adapter.notifyDataSetChanged()
                 }
             }
@@ -110,6 +113,7 @@ class searchView : Fragment() {
 
         database.addChildEventListener(childEventListener)
 
+        // Skapa en lyssnare för sökvy
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 search.clearFocus()
@@ -137,7 +141,12 @@ class searchView : Fragment() {
         return view
     }
 
-
+    /**
+     * Visar ett popup-fönster med detaljerad information om det valda livsmedlet.
+     *
+     * @param foodName Namnet på det valda livsmedlet.
+     * @param anchorView Ankarens vy för att positionera popup-fönstret.
+     */
     @SuppressLint("MissingInflatedId", "SetTextI18n", "InflateParams")
     private fun showPopupLayout(foodName: String, anchorView: View) {
         val foodRef = database.child(foodName)
@@ -203,7 +212,8 @@ class searchView : Fragment() {
                                 sharedViewModel.updateRemCalValue(new_value)
                                 val user = auth.currentUser?.uid
                                 if (user != null) {
-                                    myRef.child("users").child(user).child("remaining").setValue(sharedViewModel.remCalValue)
+                                    myRef.child("users").child(user).child("remaining")
+                                        .setValue(sharedViewModel.remCalValue)
                                 }
 
                                 // Dismiss the PopupWindow
@@ -212,12 +222,20 @@ class searchView : Fragment() {
                         } catch (e: NumberFormatException) {
                             // Handle the case when the input is not a valid number
                             // Show an error message or take appropriate action
-                            Toast.makeText(requireContext(), "Please enter a valid number", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Please enter a valid number",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     } else {
                         // Handle the case when the input is blank
                         // Show an error message or take appropriate action
-                        Toast.makeText(requireContext(), "Please enter a number", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Please enter a number",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             } else {
@@ -229,11 +247,7 @@ class searchView : Fragment() {
         }
 
 
-
     }
-
-
-
 
 
 }

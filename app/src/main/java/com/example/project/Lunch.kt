@@ -25,7 +25,15 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-
+/**
+ * Fragmentklass för sökning och visning av livsmedelsinformation.
+ *
+ * Detta fragment ger användaren möjlighet att söka och visa information om olika livsmedel.
+ * Användaren kan även välja ett livsmedel för att se detaljerad information och lägga till
+ * en mängd av det livsmedlet till sitt dagliga intag.
+ *
+ * @constructor Skapar en ny instans av [searchView].
+ */
 @Suppress("NAME_SHADOWING")
 class Lunch : Fragment() {
 
@@ -64,24 +72,18 @@ class Lunch : Fragment() {
 
         listView.adapter = adapter
 
-
+        // Skapa en lyssnare för att hämta livsmedelsinformation från Firebase
         val childEventListener = object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
-                // Get the key of the item, e.g., "Appel", "Banana", etc.
                 val foodName = dataSnapshot.key
 
-                // Check if the key is not null and matches the expected format
                 if (foodName != null && dataSnapshot.hasChild("Calories")) {
-                    // Get the specific properties of the item
 
 
-                    // Create a string representation of the item
                     val comment = foodName
 
-                    // Add the string representation to the list
                     foodNames.add(comment)
 
-                    // Update the adapter
                     adapter.notifyDataSetChanged()
                 }
             }
@@ -111,6 +113,7 @@ class Lunch : Fragment() {
 
         database.addChildEventListener(childEventListener)
 
+        // Skapa en lyssnare för sökvy
           search.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
           override fun onQueryTextSubmit(query: String?): Boolean {
               search.clearFocus()
@@ -135,10 +138,14 @@ class Lunch : Fragment() {
             showPopupLayout(selectedItem, view)
 
         }
-        // Inflate the layout for this fragment
         return view
     }
-
+    /**
+     * Visar ett popup-fönster med detaljerad information om det valda livsmedlet.
+     *
+     * @param foodName Namnet på det valda livsmedlet.
+     * @param anchorView Ankarens vy för att positionera popup-fönstret.
+     */
     @SuppressLint("MissingInflatedId", "SetTextI18n", "InflateParams")
     private fun showPopupLayout(foodName: String, anchorView: View) {
         val foodRef = database.child(foodName)
@@ -150,7 +157,6 @@ class Lunch : Fragment() {
                 val fat = dataSnapshot.child("Fat").getValue(Double::class.java)
                 val protein = dataSnapshot.child("Protein").getValue(Double::class.java)
 
-                // Use anchorView.context to get the context
                 val window = PopupWindow(anchorView.context)
                 val view = layoutInflater.inflate(R.layout.fragment_popup, null)
 
@@ -173,26 +179,21 @@ class Lunch : Fragment() {
                     window.dismiss()
                 }
 
-                // Get the root view to calculate the center
                 val rootView = anchorView.rootView
 
-                // Show the PopupWindow at the center
                 window.showAtLocation(rootView, Gravity.CENTER, 0, 0)
 
-                // Access the EditText and Button from the existing layout (view)
                 val valueEditText = view.findViewById<EditText>(R.id.editText)
                 val addBtn = view.findViewById<Button>(R.id.add_btn)
 
                 var new_value: Double
 
                 addBtn.setOnClickListener {
-                    // Get the text from the EditText and convert it to Double
                     val inputText = valueEditText.text.toString()
 
                     if (inputText.isNotBlank()) {
                         val inputValue = inputText.toDouble()
 
-                        // Assuming "calories" is a constant value
                         if (calories != null) {
                             new_value = (calories / 100) * inputValue
                             val sharedViewModel: SharedViewModel by activityViewModels()
@@ -202,7 +203,6 @@ class Lunch : Fragment() {
                                 myRef.child("users").child(user).child("remaining").setValue(sharedViewModel.remCalValue)
                             }
 
-                            // rem_kcal.setText(new_value.toString())
 
 
                             window.dismiss()
@@ -219,7 +219,6 @@ class Lunch : Fragment() {
             }
         }.addOnFailureListener { exception ->
             Log.e("firebase", "Error getting data for $foodName", exception)
-            // Handle the error if needed
         }
 
 

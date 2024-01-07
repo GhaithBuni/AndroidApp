@@ -19,7 +19,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
 
-
+/**
+* Fragmentklass för användarens profil.
+*
+* Detta fragment visar användarens e-postadress, vikt, mål, längd och aktivitetsnivå.
+* Användaren kan också uppdatera sin vikt i profilen.
+*
+* @constructor Skapar en ny instans av [MyProfile].
+*/
 class MyProfile : Fragment() {
 
     private lateinit var database: DatabaseReference
@@ -71,6 +78,8 @@ class MyProfile : Fragment() {
                 getUserActiv.text = userActiv.toString()
 
             }
+            // Uppdatera användarens vikt i databasen
+
             getUserUpdate.setOnClickListener {
 
                 val newWeight = getUserWeight.text.toString()
@@ -81,11 +90,13 @@ class MyProfile : Fragment() {
 
 
         }
+        // Sätt en lyssnare för logga ut-knappen
         logout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             startActivity(Intent(requireContext(), MainActivity::class.java))
         }
 
+        // Hitta navigationsvy och sätt en lyssnare för dess menyobjekt
 
         val bottomNavigationView =
             view.findViewById<BottomNavigationView>(R.id.bottomNavigationView2)

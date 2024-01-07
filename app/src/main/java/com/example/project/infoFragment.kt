@@ -59,7 +59,11 @@ class infoFragment : Fragment() {
 
         return view
     }
-
+    /**
+     * Ställer in en klicklyssnare för den angivna knappen för att hantera händelser vid knappklick.
+     *
+     * @param button Knappen för vilken klicklyssnaren ska ställas in.
+     */
     private fun setButtonClickListener(button: Button) {
         button.setOnClickListener {
             resetButtonState()
@@ -74,7 +78,9 @@ class infoFragment : Fragment() {
 
         }
     }
-
+    /**
+     * Återställer tillståndet för alla knappar för aktivitetsnivå till deras standardtillstånd.
+     */
     private fun resetButtonState() {
         maleBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)
         femaleBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.default_outline_button)

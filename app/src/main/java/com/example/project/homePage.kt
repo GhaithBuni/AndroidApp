@@ -21,7 +21,15 @@ import kotlin.math.round
 
 
 
-
+/**
+ * Fragmentklass för startsidan i applikationen.
+ *
+ * Detta fragment visar användarens dagliga mål, rekommenderade kaloriintag för varje måltid
+ * och deras nuvarande återstående kalorimängd. Dessutom ger den användaren knappar
+ * för att navigera till olika delar av applikationen, som frukost, lunch, middag och snacks.
+ *
+ * @constructor Skapar en ny instans av [homePage].
+ */
 
 class homePage : Fragment() {
 

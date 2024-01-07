@@ -24,7 +24,15 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-
+/**
+ * Fragmentklass för sökning och visning av livsmedelsinformation.
+ *
+ * Detta fragment ger användaren möjlighet att söka och visa information om olika livsmedel.
+ * Användaren kan även välja ett livsmedel för att se detaljerad information och lägga till
+ * en mängd av det livsmedlet till sitt dagliga intag.
+ *
+ * @constructor Skapar en ny instans av [searchView].
+ */
 
 private lateinit var database: DatabaseReference
 private lateinit var auth: FirebaseAuth
@@ -62,24 +70,19 @@ class Dinner : Fragment() {
             ArrayAdapter(requireContext(), R.layout.text_color, foodNames)
 
         listView.adapter = adapter
+        // Skapa en lyssnare för att hämta livsmedelsinformation från Firebase
 
         val childEventListener = object : ChildEventListener {
             override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
-                // Get the key of the item, e.g., "Appel", "Banana", etc.
                 val foodName = dataSnapshot.key
 
-                // Check if the key is not null and matches the expected format
                 if (foodName != null && dataSnapshot.hasChild("Calories")) {
-                    // Get the specific properties of the item
 
 
-                    // Create a string representation of the item
                     val comment = foodName
 
-                    // Add the string representation to the list
                     foodNames.add(comment)
 
-                    // Update the adapter
                     adapter.notifyDataSetChanged()
                 }
             }
@@ -107,6 +110,7 @@ class Dinner : Fragment() {
         }
 
         database.addChildEventListener(childEventListener)
+        // Skapa en lyssnare för sökvy
 
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -131,7 +135,6 @@ class Dinner : Fragment() {
 
         }
 
-        // Inflate the layout for this fragment
         return view
     }
 
@@ -147,7 +150,6 @@ class Dinner : Fragment() {
                 val fat = dataSnapshot.child("Fat").getValue(Double::class.java)
                 val protein = dataSnapshot.child("Protein").getValue(Double::class.java)
 
-                // Use anchorView.context to get the context
                 val window = PopupWindow(anchorView.context)
                 val view = layoutInflater.inflate(R.layout.fragment_popup, null)
 
@@ -170,20 +172,16 @@ class Dinner : Fragment() {
                     window.dismiss()
                 }
 
-                // Get the root view to calculate the center
                 val rootView = anchorView.rootView
 
-                // Show the PopupWindow at the center
                 window.showAtLocation(rootView, Gravity.CENTER, 0, 0)
 
-                // Access the EditText and Button from the existing layout (view)
                 val valueEditText = view.findViewById<EditText>(R.id.editText)
                 val addBtn = view.findViewById<Button>(R.id.add_btn)
 
                 var newValue: Double
 
                 addBtn.setOnClickListener {
-                    // Get the text from the EditText and convert it to Double
                     val inputText = valueEditText.text.toString()
 
                     if (inputText.isNotBlank()) {
@@ -203,7 +201,6 @@ class Dinner : Fragment() {
                             }
                             window.dismiss()
 
-                            // Do something with the new_value
                         }
                     } else {
                         // Handle the case when the input is blank or not a valid number

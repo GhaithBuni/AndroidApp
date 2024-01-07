@@ -7,11 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 
-
-
 class popup : Fragment() {
-
-
 
 
     override fun onCreateView(

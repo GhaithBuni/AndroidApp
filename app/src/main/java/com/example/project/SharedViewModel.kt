@@ -5,15 +5,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.database.*
 
+
+/**
+ * ViewModel-klass som delas mellan olika fragment för att hantera och uppdatera gemensam data.
+ *
+ * Denna klass innehåller LiveData för återstående kalorivärden, samt funktioner för att uppdatera
+ * dessa värden och hämta/uppdatera dem från och till Firebase-databasen.
+ *
+ * @constructor Skapar en ny instans av [SharedViewModel].
+ */
 class SharedViewModel : ViewModel() {
 
     private val _remCalValue = MutableLiveData<Double>()
 
-    // Expose the LiveData as read-only
     val remCalValue: LiveData<Double>
         get() = _remCalValue
 
-    // Variable to store the previous value
      var previousRemCalValue: Double = 0.0
 
     // Firebase
@@ -22,23 +29,26 @@ class SharedViewModel : ViewModel() {
 
     private var user: String? = null
 
-    // Function to update the value
+    /**
+     * Funktion för att uppdatera det återstående kalorivärdet.
+     *
+     * @param newValue Det nya värdet som ska läggas till det befintliga återstående kalorivärdet.
+     */
     fun updateRemCalValue(newValue: Double) {
-        // Save the previous value
-       // previousRemCalValue = _remCalValue.value ?: 0.0
 
-        // Calculate the new value by adding the previous value and the new one
+
         val updatedValue = previousRemCalValue + newValue
-        //println(updatedValue)
         println(previousRemCalValue)
-        // Update the LiveData
         _remCalValue.value = updatedValue
 
-        // Update the value in Firebase if a user is logged in
         user?.let { updateUserRemainingCalories(updatedValue) }
     }
 
-    // Function to fetch remaining calories from Firebase
+    /**
+     * Funktion för att hämta det återstående kalorivärdet från Firebase.
+     *
+     * @param userId Användarens ID för att identifiera rätt användare i databasen.
+     */
     fun fetchRemainingCaloriesFromFirebase(userId: String) {
         user = userId
 
@@ -57,7 +67,11 @@ class SharedViewModel : ViewModel() {
             })
     }
 
-    // Function to update remaining calories in Firebase
+    /**
+     * Funktion för att uppdatera det återstående kalorivärdet i Firebase.
+     *
+     * @param newValue Det nya värdet som ska uppdateras i databasen.
+     */
     private fun updateUserRemainingCalories(newValue: Double) {
         user?.let {
             database.child("users").child(it).child("remaining").setValue(newValue)
