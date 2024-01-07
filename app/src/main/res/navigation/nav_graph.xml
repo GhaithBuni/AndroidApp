@@ -115,9 +115,12 @@
         android:name="com.example.project.searchView"
         android:label="fragment_search_view"
         tools:layout="@layout/fragment_search_view" >
+
         <action
             android:id="@+id/action_searchView2_to_homePage"
-            app:destination="@id/homePage" />
+            app:destination="@id/homePage"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"/>
     </fragment>
     <fragment
         android:id="@+id/lunch"

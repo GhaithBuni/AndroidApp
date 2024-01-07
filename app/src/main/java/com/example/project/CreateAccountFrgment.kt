@@ -1,8 +1,6 @@
 package com.example.project
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +9,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-
-
+import kotlin.math.round
 
 
 class CreateAccountFrgment : Fragment() {
@@ -35,22 +33,70 @@ class CreateAccountFrgment : Fragment() {
         val passTxt = view.findViewById<EditText>(R.id.pass_account)
         val nextButton = view.findViewById<Button>(R.id.sumbit_btn)
 
+
         auth = FirebaseAuth.getInstance()
         database = Firebase.database.reference
+        val sharedViewModel1: SharedViewModel by activityViewModels()
+        val weightCal = sharedViewModel1.weight
+        val heightCal = sharedViewModel1.height
+        val ageCal = sharedViewModel1.age
+
+        var Bmr: Double = 0.0
+        var Amr: Double = 0.0
+        var TotalCalories: Double = 0.0
+
+        if (sharedViewModel1.gender == "Female") {
+
+            if (weightCal != null && heightCal != null && ageCal != null) {
+                Bmr = 655.1 + (9.563 * weightCal.toDouble()) + (1.850 * heightCal.toDouble() ) - (4.676 * ageCal.toInt())
+            }
+
+        }
+        if (sharedViewModel1.gender == "Male") {
+
+            if (weightCal != null && heightCal != null && ageCal != null) {
+                Bmr = 66.47 + (13.75 * weightCal.toDouble()) + (5.003 * heightCal.toDouble() ) - (6.775 * ageCal.toInt())
+            }
+
+        }
+
+        if (sharedViewModel1.activityLevel == "Light: exercise 1-3 times/week"){
+            Amr = Bmr * 1.375
+        }
+        if (sharedViewModel1.activityLevel == "Moderate_ exercise 4-5 times/week"){
+            Amr = Bmr * 1.55
+        }
+        if (sharedViewModel1.activityLevel == "Active: daily exercise or intense exercise 3-4 times/week"){
+            Amr = Bmr * 1.725
+        }
+        if (sharedViewModel1.activityLevel == "Very Active: intense exercise 6-7 times/week"){
+            Amr = Bmr * 1.9
+
+        }
+        if (sharedViewModel1.userGoal == "Lose Weight"){
+            TotalCalories = Amr - 500.0
+        }
+
+
+
+
+        val sharedViewModel: SharedViewModel by activityViewModels()
+        // Set the value in the view model
+        sharedViewModel.totalCalories = TotalCalories
 
         nextButton.setOnClickListener {
-            val bundle = arguments
+
             val email = emailTxt.text.toString()
-            val myGoal = bundle?.getString("val1")
-            val sharedViewModel: SharedViewModel by activityViewModels()
+
+            val sharedViewModel2: SharedViewModel by activityViewModels()
 
             // Retrieve the value from the view model
-            val userGoal = sharedViewModel.userGoal
+
 
             // Create a user object with data from the shared view model
             val user = User(
-                sharedViewModel.userGoal, sharedViewModel.activityLevel, sharedViewModel.gender,
-                sharedViewModel.age, sharedViewModel.height, sharedViewModel.weight
+                sharedViewModel2.userGoal, sharedViewModel2.activityLevel, sharedViewModel2.gender,
+                sharedViewModel2.age, sharedViewModel2.height, sharedViewModel2.weight,
             )
 
             // Authenticate user
@@ -62,9 +108,11 @@ class CreateAccountFrgment : Fragment() {
 
                         // Include UID in the user object
                         user.uid = uid
+                        user.totalCalories = round( TotalCalories / 100.0) * 100.0
 
                         // Store user data in the database
                         database.child("users").child(uid ?: "").setValue(user)
+                        view.findNavController().navigate(R.id.action_createAccountFrgment_to_homePage)
 
                         // Navigate to home page or perform other actions
                         // view.findNavController().navigate(R.id.action_createAccountFrgment_to_homePage)
@@ -81,6 +129,8 @@ class CreateAccountFrgment : Fragment() {
 
         return view
     }
+
+
 }
 
 
