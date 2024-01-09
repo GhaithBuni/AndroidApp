@@ -10,6 +10,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import com.example.project.Model.SharedViewModel
+import com.example.project.Model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
@@ -35,7 +37,6 @@ class CreateAccountFrgment : Fragment() {
     ): View {
 
         val view = inflater.inflate(R.layout.fragment_create_account_frgment, container, false)
-
         val emailTxt = view.findViewById<EditText>(R.id.email_account)
         val passTxt = view.findViewById<EditText>(R.id.pass_account)
         val nextButton = view.findViewById<Button>(R.id.sumbit_btn)
@@ -83,6 +84,13 @@ class CreateAccountFrgment : Fragment() {
         if (sharedViewModel1.userGoal == "Lose Weight"){
             totalCalories = amr - 500.0
         }
+        if (sharedViewModel1.userGoal == "Gain Weight"){
+            totalCalories = amr + 500.0
+        }
+        if (sharedViewModel1.userGoal == "Maintain Weight"){
+            totalCalories = amr
+            println(totalCalories)
+        }
 
 
 
@@ -122,7 +130,7 @@ class CreateAccountFrgment : Fragment() {
                         view.findNavController().navigate(R.id.action_createAccountFrgment_to_homePage)
 
                         // Navigate to home page or perform other actions
-                        // view.findNavController().navigate(R.id.action_createAccountFrgment_to_homePage)
+
                     } else {
                         // If sign up fails, display a message to the user.
                         Toast.makeText(

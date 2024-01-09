@@ -57,7 +57,7 @@
         android:backgroundTint="@color/edittextColor"
         android:ems="10"
         android:hint="*******"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         />

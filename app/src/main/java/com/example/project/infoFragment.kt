@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-
+import com.example.project.Model.SharedViewModel
 
 
 class infoFragment : Fragment() {

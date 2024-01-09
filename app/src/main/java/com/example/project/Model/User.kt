@@ -1,4 +1,4 @@
-package com.example.project
+package com.example.project.Model
 
 data class User(
     var userGoal: String? = null,

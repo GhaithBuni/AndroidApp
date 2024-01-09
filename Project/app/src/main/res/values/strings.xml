@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Project</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_text">Welcome to the Run keeper app.
+    This app will help show you have far and the route you took while running.
+    But in order to do this you must share your location data.</string>
+
+    <string name="my_map_api_key">AIzaSyCyjnpMbB3HuhGESRdCEwlY5RriAMvJCYo</string>
+    <string name="my_map_api_key_school">AIzaSyBWNEUBVVPQ7njBRNv_t6sA5gsNUe3HYgU</string>
+</resources>
